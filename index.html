@@ -1,0 +1,510 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Dale and TPACK Exam</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Lexend:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: one question per screen in a calm reading column; slim top bar for progress and reading options, sticky bottom bar for moving between questions. */
+:root{
+  --paper:#F4F6F8; --surface:#FFFFFF; --ink:#16202E; --muted:#4E5C70; --line:#D3DAE3;
+  --primary:#1B5E8C; --primary-ink:#FFFFFF; --primary-soft:#E1ECF5;
+  --pick:#0E6E5C; --pick-soft:#DCF1EB;
+  --flag:#B86E00; --flag-soft:#FCEED8;
+  --warn:#A8372A; --warn-soft:#F8E1DD;
+  --display:"Lexend","Segoe UI",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",Verdana,"Segoe UI",system-ui,sans-serif;
+  --scale:1; --lh:1.65;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F141B; --surface:#171E28; --ink:#E7ECF2; --muted:#A2AEBE; --line:#2C3644;
+  --primary:#86BCE4; --primary-ink:#0A1824; --primary-soft:#182839;
+  --pick:#5FD0B6; --pick-soft:#12302A; --flag:#F2B45A; --flag-soft:#33270F; --warn:#F2988B; --warn-soft:#3A1C18; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#0F141B; --surface:#171E28; --ink:#E7ECF2; --muted:#A2AEBE; --line:#2C3644;
+  --primary:#86BCE4; --primary-ink:#0A1824; --primary-soft:#182839;
+  --pick:#5FD0B6; --pick-soft:#12302A; --flag:#F2B45A; --flag-soft:#33270F; --warn:#F2988B; --warn-soft:#3A1C18; color-scheme:dark;}
+:root[data-contrast="high"]{
+  --paper:#000; --surface:#000; --ink:#FFF; --muted:#FFF; --line:#FFF;
+  --primary:#FFE14D; --primary-ink:#000; --primary-soft:#000;
+  --pick:#7CFF8A; --pick-soft:#000; --flag:#FFB347; --flag-soft:#000; --warn:#FF9A9A; --warn-soft:#000; color-scheme:dark;}
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:calc(100% * var(--scale));height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:var(--lh);min-height:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--flag);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;gap:.75rem;align-items:center;padding-block:.55rem;flex-wrap:wrap}
+.title{font-family:var(--display);font-weight:600;font-size:.98rem;line-height:1.2;margin:0;flex:1 1 auto;min-width:0}
+.title small{display:block;font-family:var(--body);font-weight:400;color:var(--muted);font-size:.8rem}
+.pill{border:2px solid var(--primary);color:var(--primary);background:transparent;border-radius:999px;padding:.25rem .8rem;font-weight:700;cursor:pointer;font-size:.88rem}
+.progress{flex-basis:100%;display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.progress .bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress .bar span{display:block;height:100%;background:var(--pick);width:0;transition:width .2s}
+.settings{border-top:1px solid var(--line)}
+.settings .wrap{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;padding-block:.75rem}
+.grp{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+.grp .lbl{font-weight:700;font-size:.88rem;margin-right:.2rem}
+.seg{border:1.5px solid var(--line);background:var(--paper);border-radius:8px;padding:.25rem .65rem;cursor:pointer;font-size:.88rem}
+.seg[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:var(--primary-ink);font-weight:700}
+
+main{padding-block:1.5rem 7rem}
+main:focus{outline:none}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.15;margin:0 0 .6rem;text-wrap:balance}
+h2{font-family:var(--display);font-weight:600;font-size:1.25rem;margin:1.6rem 0 .6rem;text-wrap:balance}
+p{margin:0 0 .9rem;max-width:66ch}
+.muted{color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.2rem 1.3rem;margin:1rem 0}
+.steps{list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:.75rem;counter-reset:s}
+.steps li{display:grid;grid-template-columns:2.2rem 1fr;gap:.75rem;align-items:start}
+.steps li::before{counter-increment:s;content:counter(s);width:2.2rem;height:2.2rem;border-radius:50%;background:var(--primary);color:var(--primary-ink);display:grid;place-items:center;font-family:var(--display);font-weight:700}
+.steps b{display:block}
+.legend{display:flex;flex-wrap:wrap;gap:.5rem 1rem;margin-top:.5rem;font-size:.92rem}
+.legend span{display:inline-flex;gap:.4rem;align-items:center}
+.sw{width:1.1rem;height:1.1rem;border-radius:4px;border:2px solid var(--line);display:inline-block}
+.sw.ans{background:var(--pick);border-color:var(--pick)} .sw.flg{background:var(--flag-soft);border-color:var(--flag)}
+label.f{display:block;font-weight:700;margin:.2rem 0 .35rem}
+input[type=text]{width:100%;background:var(--paper);border:2px solid var(--line);border-radius:10px;padding:.65rem .8rem;font-size:1.1rem}
+input[type=text]:focus{border-color:var(--primary)}
+.btn{border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:.65rem 1.1rem;font-weight:700;cursor:pointer;min-height:48px}
+.btn:hover{border-color:var(--primary)}
+.btn.primary{background:var(--primary);border-color:var(--primary);color:var(--primary-ink)}
+.btn.danger{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.err{color:var(--warn);font-weight:700;min-height:1.4em;margin:.4rem 0 0}
+.note{border-left:4px solid var(--flag);background:var(--flag-soft);padding:.7rem .9rem;border-radius:0 10px 10px 0;margin:1rem 0}
+
+/* question */
+.qhead{display:flex;justify-content:space-between;gap:.75rem;align-items:center;flex-wrap:wrap;margin-bottom:.4rem}
+.part{font-size:.85rem;font-weight:700;color:var(--primary);letter-spacing:.02em}
+.qnum{font-family:var(--display);font-weight:700;font-size:1.05rem}
+.ctx{font-size:1.15rem;margin:0 0 .6rem}
+.ask{font-family:var(--display);font-weight:600;font-size:1.3rem;line-height:1.35;margin:0 0 .8rem}
+.origbox{border:1.5px dashed var(--line);border-radius:10px;padding:.6rem .8rem;margin:.2rem 0 1rem;font-size:.98rem}
+.origbox b{display:block;font-size:.8rem;color:var(--muted);letter-spacing:.02em}
+.linkbtn{background:none;border:0;padding:.2rem 0;color:var(--primary);font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-size:.95rem;min-height:36px}
+.words{background:var(--primary-soft);border:1px solid var(--line);border-radius:12px;padding:.7rem .9rem;margin:0 0 1rem}
+.words h3{margin:0 0 .3rem;font-family:var(--display);font-size:.9rem;font-weight:600}
+.words dl{margin:0;display:grid;gap:.25rem}
+.words dt{font-weight:700;display:inline}
+.words dd{display:inline;margin:0}
+.words div{font-size:.98rem}
+figure.pic{margin:.2rem 0 1rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.6rem;display:flex;justify-content:center}
+figure.pic svg{width:100%;max-width:360px;height:auto}
+svg text{font-family:var(--body)}
+.opts{display:grid;gap:.6rem;margin-top:.4rem}
+.opt{display:grid;grid-template-columns:2.6rem 1fr auto;gap:.8rem;align-items:center;text-align:left;width:100%;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:.75rem .9rem;cursor:pointer;min-height:60px;font-size:1.08rem;line-height:1.4}
+.opt:hover{border-color:var(--primary)}
+.opt .L{width:2.6rem;height:2.6rem;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:1.1rem}
+.opt .tick{font-weight:700;color:var(--pick);font-size:.9rem;white-space:nowrap}
+.opt[aria-checked="true"]{border-color:var(--pick);background:var(--pick-soft);box-shadow:0 0 0 2px var(--pick)}
+.opt[aria-checked="true"] .L{background:var(--pick);border-color:var(--pick);color:var(--surface)}
+.status{margin-top:.8rem;font-weight:700;display:flex;gap:.5rem;align-items:center;min-height:1.6em}
+.status.done{color:var(--pick)} .status.none{color:var(--muted)}
+
+/* bottom nav */
+.bottom{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.bottom .wrap{display:grid;grid-template-columns:1fr auto 1fr;gap:.5rem;padding-block:.6rem;align-items:center}
+.bottom .btn{width:100%}
+.flagbtn{border:2px solid var(--flag);color:var(--flag);background:transparent}
+.flagbtn[aria-pressed="true"]{background:var(--flag-soft)}
+@media (max-width:520px){.bottom .wrap{grid-template-columns:1fr 1fr;}.bottom .flagwrap{grid-column:1 / -1;order:-1}}
+
+/* map */
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(2.9rem,1fr));gap:.4rem}
+.map button{aspect-ratio:1;max-width:100%;border:2px solid var(--line);background:var(--surface);border-radius:10px;cursor:pointer;font-weight:700;font-variant-numeric:tabular-nums;position:relative}
+.map button.ans{background:var(--pick);border-color:var(--pick);color:var(--surface)}
+.map button.flg{border-color:var(--flag);box-shadow:inset 0 0 0 3px var(--flag-soft)}
+.map button.flg::after{content:"!";position:absolute;top:-6px;right:-6px;width:1.1rem;height:1.1rem;border-radius:50%;background:var(--flag);color:var(--surface);font-size:.75rem;display:grid;place-items:center}
+.map button.cur{outline:3px solid var(--primary);outline-offset:1px}
+.maphead{font-weight:700;margin:.8rem 0 .4rem;font-size:.92rem}
+.big{font-family:var(--display);font-weight:700;font-size:2.4rem;line-height:1;font-variant-numeric:tabular-nums}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:.6rem}
+.stats > div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem}
+.stats small{display:block;color:var(--muted);font-weight:700;font-size:.82rem}
+.codebox{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--paper);border:2px dashed var(--line);border-radius:10px;padding:.8rem;word-break:break-all;font-size:1rem}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.93rem;font-variant-numeric:tabular-nums}
+th,td{border:1px solid var(--line);padding:.4rem .5rem;text-align:left}
+th{background:var(--primary-soft);font-family:var(--display);font-weight:600}
+td.r{color:var(--pick);font-weight:700} td.w{color:var(--warn);font-weight:700}
+.sub{border:1px solid var(--line);border-radius:14px;padding:1rem;margin:1rem 0;background:var(--surface)}
+.timechip{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <p class="title">Dale's Cone and TPACK: 50-Item Exam<small>Technology for Teaching and Learning 1</small></p>
+    <span class="timechip" id="timeChip" hidden></span>
+    <button class="pill" id="teacherBtn" type="button" hidden>Teacher view</button>
+    <button class="pill" id="setBtn" type="button" aria-expanded="false" aria-controls="settings">Reading options</button>
+    <div class="progress" id="prog" hidden><span id="progTxt">0 of 50 answered</span><div class="bar" aria-hidden="true"><span id="progBar"></span></div></div>
+  </div>
+  <div class="settings" id="settings" hidden>
+    <div class="wrap">
+      <div class="grp"><span class="lbl">Text size</span><button class="seg" type="button" data-scale="1">Normal</button><button class="seg" type="button" data-scale="1.15">Large</button><button class="seg" type="button" data-scale="1.3">Extra large</button></div>
+      <div class="grp"><span class="lbl">Line spacing</span><button class="seg" type="button" data-lh="1.65">Normal</button><button class="seg" type="button" data-lh="2">Wide</button></div>
+      <div class="grp"><span class="lbl">Contrast</span><button class="seg" type="button" data-contrast="normal">Normal</button><button class="seg" type="button" data-contrast="high">High</button></div>
+      <div class="grp"><span class="lbl">Original wording</span><button class="seg" type="button" data-orig="off">Hide</button><button class="seg" type="button" data-orig="on">Always show</button></div>
+      <div class="grp"><span class="lbl">Time used</span><button class="seg" type="button" data-time="off">Hide</button><button class="seg" type="button" data-time="on">Show</button></div>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main" tabindex="-1"></main>
+<nav class="bottom" id="bottom" hidden aria-label="Move between questions">
+  <div class="wrap">
+    <button class="btn" type="button" id="prevBtn">← Back</button>
+    <div class="flagwrap"><button class="btn flagbtn" type="button" id="flagBtn" aria-pressed="false">Mark to check later</button></div>
+    <button class="btn primary" type="button" id="nextBtn">Next →</button>
+  </div>
+</nav>
+
+<script>
+const ITEMS = [{"n": 1, "part": "A", "orig": "Who developed the Cone of Experience?", "ctx": "", "ask": "Who made the Cone of Experience?", "words": [], "pic": null, "opts": ["Jerome Bruner", "Edgar Dale", "Lee Shulman", "Benjamin Bloom"]}, {"n": 2, "part": "A", "orig": "According to Dale, what is the basis for arranging the bands of experience in the cone?", "ctx": "Dale put the bands (levels) of the cone in a certain order.", "ask": "What is this order based on?", "words": [["band", "one level or layer of the cone"]], "pic": null, "opts": ["The level of difficulty of each experience", "The age of the learners using each experience", "The cost of the materials for each experience", "The degree of abstraction of each experience"]}, {"n": 3, "part": "A", "orig": "Which band forms the base, or foundation, of the Cone of Experience?", "ctx": "Look at the picture. The colored band is at the bottom of the cone.", "ask": "Which band is at the bottom (the base) of the cone?", "words": [["base", "the bottom part that holds everything up"]], "pic": "coneBase", "opts": ["Dramatized experiences", "Contrived experiences", "Direct purposeful experiences", "Educational television"]}, {"n": 4, "part": "A", "orig": "Which band is considered the most abstract in the Cone of Experience?", "ctx": "", "ask": "Which band of the cone is the most abstract?", "words": [], "pic": null, "opts": ["Verbal symbols", "Motion pictures", "Visual symbols", "Still pictures"]}, {"n": 5, "part": "A", "orig": "Among the Eight M's of teaching, which two are the elements of the Cone of Experience?", "ctx": "The Eight M's of teaching are eight parts of good teaching.", "ask": "Which TWO of the Eight M's are the parts of the Cone of Experience?", "words": [], "pic": null, "opts": ["Milieu and motivation", "Media and material", "Method and matter", "Mastery and measurement"]}, {"n": 6, "part": "A", "orig": "In the Eight M's of teaching, what does \"milieu\" refer to?", "ctx": "", "ask": "In the Eight M's of teaching, what does “milieu” mean?", "words": [], "pic": null, "opts": ["The communication system", "The resources of learning", "The content of learning", "The learning environment"]}, {"n": 7, "part": "A", "orig": "In Bruner's three-tiered model of learning, the iconic stage presents knowledge through which of the following?", "ctx": "Bruner's model says that learning has three stages.", "ask": "What does the iconic stage use to present knowledge?", "words": [["series", "a group of things that come one after another"]], "pic": null, "opts": ["A series of actions or movements", "A series of real-life experiments", "A series of symbols or formulae", "A series of illustrations or icons"]}, {"n": 8, "part": "A", "orig": "Dale wrote that a still photograph of a tree is not more difficult to understand than a dramatization of Hamlet. What point does this example make?", "ctx": "Dale wrote: a photo of a tree is not harder to understand than a play of Hamlet.", "ask": "What is Dale's point?", "words": [["Hamlet", "a famous play by William Shakespeare"]], "pic": null, "opts": ["Pictures teach better than plays in every kind of lesson", "The bands differ in how concrete they are, not in difficulty", "Dramatizations are too difficult for most young learners", "Photographs should be used before any dramatization"]}, {"n": 9, "part": "A", "orig": "The Cone of Experience is described as a continuum of learning. What does this mean?", "ctx": "The cone is called a “continuum” of learning.", "ask": "What does this mean?", "words": [["mature", "grow older"]], "pic": null, "opts": ["Each band is meant for only one specific age group of learners", "The bands overlap and blend, allowing movement across levels", "The bands are separate and must be completed in a fixed order", "The upper bands replace the lower ones as the learners mature"]}, {"n": 10, "part": "A", "orig": "Why can the version of the cone that assigns percentages to each band be confusing?", "ctx": "Some versions of the cone put a percentage (%) on each band.", "ask": "Why can these versions be confusing?", "words": [["motivation", "a learner's wish or drive to learn"]], "pic": null, "opts": ["It leaves out the bands for educational television and motion pictures", "It arranges the bands in the reverse order, from the tip down to the base", "It suggests learning depends only on the band, ignoring factors like motivation", "It combines Bruner's three stages into a single band at the very top"]}, {"n": 11, "part": "A", "orig": "According to the lesson, how should young learners move through Bruner's stages?", "ctx": "", "ask": "In what order should young learners go through Bruner's three stages?", "words": [], "pic": null, "opts": ["From iconic, to enactive, then to symbolic", "From enactive, to symbolic, then to iconic", "From enactive, to iconic, then to symbolic", "From symbolic, to iconic, then to enactive"]}, {"n": 12, "part": "A", "orig": "What is the main purpose of contrived experiences such as models, miniatures, and mock-ups?", "ctx": "Contrived experiences use models, miniatures, and mock-ups.", "ask": "What is their main purpose?", "words": [["miniature", "a very small copy of something"], ["mock-up", "a model that looks like the real thing"], ["substitute for", "take the place of"], ["beyond the learners' grasp", "out of the learners' reach"]], "pic": null, "opts": ["To substitute for things or events beyond the learners' grasp", "To let learners act out events from history or from literature", "To record information so learners can listen to it repeatedly", "To present information through graphs, charts, and flow charts"]}, {"n": 13, "part": "A", "orig": "A teacher shows the class, step by step, how to fold a paper boat while the learners watch. Which band of experience is this?", "ctx": "A teacher folds a paper boat in front of the class, one step at a time. The learners watch.", "ask": "Which band of experience is this?", "words": [], "pic": null, "opts": ["Demonstrations", "Exhibits", "Dramatized experiences", "Contrived experiences"]}, {"n": 14, "part": "A", "orig": "Learners role-play a barangay assembly to understand how community decisions are made. Which band of experience is this?", "ctx": "Learners role-play a barangay assembly. This helps them understand how a community makes decisions.", "ask": "Which band of experience is this?", "words": [["role-play", "act as another person in a pretend situation"], ["barangay assembly", "a meeting of the people of a barangay"]], "pic": null, "opts": ["Demonstrations", "Study trips", "Direct purposeful experiences", "Dramatized experiences"]}, {"n": 15, "part": "A", "orig": "A Grade 4 class goes to a local bakery to observe how bread is made. Which band of experience is this?", "ctx": "A Grade 4 class goes to a local bakery. They watch how bread is made.", "ask": "Which band of experience is this?", "words": [], "pic": null, "opts": ["Direct purposeful experiences", "Study trips", "Demonstrations", "Exhibits"]}, {"n": 16, "part": "A", "orig": "A teacher presents the steps of the scientific method using a flow chart. Which band of experience is this?", "ctx": "A teacher shows the steps of the scientific method in a flow chart.", "ask": "Which band of experience is this?", "words": [["flow chart", "a diagram with boxes and arrows that shows steps in order"]], "pic": null, "opts": ["Still pictures", "Visual symbols", "Exhibits", "Verbal symbols"]}, {"n": 17, "part": "A", "orig": "Learners listen to a radio broadcast of a weather report to learn about typhoon signals. Which band of experience is this?", "ctx": "Learners listen to a weather report on the radio. They learn about typhoon signals.", "ask": "Which band of experience is this?", "words": [], "pic": null, "opts": ["Motion pictures", "Verbal symbols", "Educational television", "Recordings, radio, and still pictures"]}, {"n": 18, "part": "A", "orig": "At a science fair, learners press buttons on a display that light up the parts of a model volcano. Which band of experience is this?", "ctx": "At a science fair, learners press buttons on a display. The buttons light up the parts of a model volcano.", "ask": "Which band of experience is this?", "words": [], "pic": null, "opts": ["Study trips", "Exhibits", "Contrived experiences", "Demonstrations"]}, {"n": 19, "part": "A", "orig": "Following Dale's Cone, which activity should come FIRST in a Grade 2 lesson on fractions?", "ctx": "You will teach fractions to Grade 2 learners. You will follow Dale's Cone.", "ask": "Which activity should come FIRST?", "words": [["cassava cake", "a Filipino cake made from cassava, a root crop"]], "pic": null, "opts": ["Dividing a real cassava cake into equal parts", "Writing fractions such as 1/2 and 1/4 on the board", "Solving word problems that involve simple fractions", "Drawing circles and shading the fractional parts"]}, {"n": 20, "part": "A", "orig": "A kindergarten teacher wants her learners to learn about farm animals. Based on the cone, which experience would work BEST?", "ctx": "A kindergarten teacher wants her learners to learn about farm animals.", "ask": "Based on the cone, which experience will work BEST?", "words": [], "pic": null, "opts": ["Reading a book with the names of the animals", "Visiting a farm to see and touch the animals", "Watching a short video clip of animals on a farm", "Listening to an audio recording of animal sounds"]}, {"n": 21, "part": "A", "orig": "A teacher uses only lectures for the whole quarter. Which pitfall in using the Cone of Experience does this show?", "ctx": "A teacher only gives lectures for the whole quarter. A pitfall is a common mistake to avoid.", "ask": "Which pitfall does this show?", "words": [["medium", "a way to teach or share information"], ["in isolation", "alone, by itself"]], "pic": null, "opts": ["Overusing direct experiences", "Starting at the base of the cone", "Getting stuck in the concrete", "Using one medium in isolation"]}, {"n": 22, "part": "A", "orig": "A teacher keeps learners handling objects in every lesson but never introduces the terms or symbols for the concepts. Which pitfall does this show?", "ctx": "In every lesson, learners hold and use real objects. But the teacher never teaches the words or symbols for the ideas.", "ask": "Which pitfall does this show?", "words": [["foundation", "a base to build on"]], "pic": null, "opts": ["Getting stuck in the concrete without moving to the abstract", "Using one medium in isolation throughout all the lessons", "Mixing too many bands of experience in a single lesson", "Moving to the abstract without a concrete foundation first"]}, {"n": 23, "part": "A", "orig": "A teacher introduces the formula for the area of a rectangle before learners have measured any real objects. Which pitfall does this show?", "ctx": "A teacher teaches the formula for the area of a rectangle. The learners have not measured any real objects yet.", "ask": "Which pitfall does this show?", "words": [["foundation", "a base to build on"]], "pic": null, "opts": ["Getting stuck in the concrete without moving to the abstract", "Choosing an experience that is too concrete for the learners", "Moving to the abstract without a concrete foundation first", "Using one medium in isolation throughout all the lessons"]}, {"n": 24, "part": "A", "orig": "Which statement is NOT supported by Dale's view of the Cone of Experience?", "ctx": "Three of these statements agree with Dale. One statement does NOT agree.", "ask": "Which statement does NOT agree with Dale's view of the cone?", "words": [], "pic": null, "opts": ["A balance of concrete and abstract experiences is needed", "Teachers begin with the experience that fits learners' needs", "Experiences from different bands can be mixed in one lesson", "All teaching must begin at the base and move upward to the tip"]}, {"n": 25, "part": "A", "orig": "A child correctly names a giraffe even though she has never seen a real one. What best explains this?", "ctx": "A child names a giraffe correctly. But she has never seen a real giraffe.", "ask": "What is the best reason?", "words": [], "pic": null, "opts": ["She learned it from pictures or videos, which are iconic experiences", "Abstract concepts can only be learned through direct experience", "She must have had a direct purposeful experience with a giraffe", "Verbal symbols are always learned before pictures and videos"]}, {"n": 26, "part": "B", "orig": "Who developed the TPACK framework by adding technology to Pedagogical Content Knowledge?", "ctx": "", "ask": "Who made the TPACK framework by adding technology to Pedagogical Content Knowledge (PCK)?", "words": [["framework", "a set of ideas that guides how we plan and decide"]], "pic": null, "opts": ["Mishra and Koehler", "Anderson and Krathwohl", "Ruben Puentedura", "Lee Shulman"]}, {"n": 27, "part": "B", "orig": "TPACK was built upon which earlier framework?", "ctx": "", "ask": "TPACK was built on an older framework. Which one?", "words": [["framework", "a set of ideas that guides how we plan and decide"]], "pic": null, "opts": ["Puentedura's SAMR Integration Model", "Bloom's Revised Taxonomy of Objectives", "Shulman's Pedagogical Content Knowledge", "Bruner's Three-Tiered Model of Learning"]}, {"n": 28, "part": "B", "orig": "What are the three main knowledge areas combined in the TPACK framework?", "ctx": "", "ask": "TPACK combines three main areas of knowledge. What are they?", "words": [], "pic": null, "opts": ["Technical, procedural, and conceptual knowledge", "Technological, pedagogical, and content knowledge", "Technological, psychological, and cultural knowledge", "Theoretical, pedagogical, and contextual knowledge"]}, {"n": 29, "part": "B", "orig": "In the TPACK framework, which knowledge area is described as the \"what\" of teaching?", "ctx": "", "ask": "In TPACK, which knowledge area is the “what” of teaching?", "words": [], "pic": null, "opts": ["Pedagogical knowledge", "Technological knowledge", "Pedagogical content knowledge", "Content knowledge"]}, {"n": 30, "part": "B", "orig": "In the TPACK framework, which knowledge area is described as the \"how\" of teaching?", "ctx": "", "ask": "In TPACK, which knowledge area is the “how” of teaching?", "words": [], "pic": null, "opts": ["Pedagogical knowledge", "Technological content knowledge", "Technological knowledge", "Content knowledge"]}, {"n": 31, "part": "B", "orig": "Which of the following best describes Pedagogical Content Knowledge (PCK)?", "ctx": "", "ask": "Which choice best describes Pedagogical Content Knowledge (PCK)?", "words": [["troubleshoot", "find and fix problems"]], "pic": null, "opts": ["Knowing how to make learners understand the concepts of a subject", "Knowing how to select and troubleshoot devices used in teaching", "Knowing how technology changes the way a subject is presented", "Knowing the facts, theories, and principles of one subject only"]}, {"n": 32, "part": "B", "orig": "Who considers Pedagogical Content Knowledge (PCK) to be \"teaching at its best\"?", "ctx": "", "ask": "Who said that Pedagogical Content Knowledge (PCK) is “teaching at its best”?", "words": [], "pic": null, "opts": ["Mishra", "Shulman", "Dale", "Koehler"]}, {"n": 33, "part": "B", "orig": "According to the lesson, technological knowledge (TK) is not only about the tools. What else does it include?", "ctx": "The lesson says that technological knowledge (TK) is not only about tools.", "ask": "What else is part of TK?", "words": [], "pic": null, "opts": ["The speed at which a teacher can type and format digital documents", "The number of applications that a teacher has installed on a phone", "The cost of buying and maintaining devices for the whole school", "The quality of content learners can access through appropriate sites"]}, {"n": 34, "part": "B", "orig": "Which of the following describes Technological Content Knowledge (TCK)?", "ctx": "", "ask": "Which choice describes Technological Content Knowledge (TCK)?", "words": [], "pic": null, "opts": ["Using technology in a specific subject to deepen understanding of its content", "Using knowledge of facts and theories to plan the content of the lesson", "Using technology to manage how learners work together on group projects", "Using teaching strategies that match the learning styles of the learners"]}, {"n": 35, "part": "B", "orig": "Which of the following describes Technological Pedagogical Knowledge (TPK)?", "ctx": "", "ask": "Which choice describes Technological Pedagogical Knowledge (TPK)?", "words": [], "pic": null, "opts": ["Knowing how a specific subject's content is changed by technology", "Knowing how to simplify complex concepts without the use of any tool", "Knowing how to select, use, or develop technology to manage learning", "Knowing the facts, concepts, and theories of a particular discipline"]}, {"n": 36, "part": "B", "orig": "In the TPACK model, what does the dashed outer circle labeled \"Contexts\" represent?", "ctx": "Look at the picture of the TPACK model. A dashed circle goes around everything. It is labeled “Contexts.”", "ask": "What does the “Contexts” circle stand for?", "words": [], "pic": "tpackCtx", "opts": ["The technology tools that a school has already purchased", "The knowledge a teacher gains from formal teacher training", "The point where all three knowledge areas fully overlap", "The real setting in which teaching and learning take place"]}, {"n": 37, "part": "B", "orig": "What does the TPACK framework describe as a whole?", "ctx": "", "ask": "As a whole, what does the TPACK framework describe?", "words": [["capability", "ability or skill"]], "pic": null, "opts": ["The capability of the 21st-century teacher", "The bands of experience from concrete to abstract", "The stages of a learner's cognitive growth", "The levels of a technology integration ladder"]}, {"n": 38, "part": "B", "orig": "According to the lesson, how should a teacher design a lesson using TPACK?", "ctx": "", "ask": "The lesson tells how to plan a lesson using TPACK. Which order is correct?", "words": [["layer in", "add on top"]], "pic": null, "opts": ["Start with technology, then content, and layer in pedagogy", "Start with pedagogy, then technology, and layer in content", "Start with content, then pedagogy, and layer in technology", "Start with the tool, then the content, and add the strategy"]}, {"n": 39, "part": "B", "orig": "A science teacher has learners collect temperature readings with a data-logging app and present them in a spreadsheet to better understand weather patterns. Which TPACK area does this show?", "ctx": "A science teacher has learners measure temperature with a data-logging app. They show the data in a spreadsheet. This helps them understand weather patterns.", "ask": "Which TPACK area does this show?", "words": [["data-logging app", "an app that records measurements"], ["spreadsheet", "a table program, like Excel"]], "pic": null, "opts": ["Technological content knowledge (TCK)", "Technological pedagogical knowledge (TPK)", "Content knowledge (CK) only", "Pedagogical content knowledge (PCK)"]}, {"n": 40, "part": "B", "orig": "A teacher chooses a shared online document so that groups can work on their project together, in and out of school. Which TPACK area does this show?", "ctx": "A teacher chooses a shared online document, like Google Docs. Groups can work on their project together, in school and at home.", "ask": "Which TPACK area does this show?", "words": [], "pic": null, "opts": ["Pedagogical content knowledge (PCK)", "Technological content knowledge (TCK)", "Technological pedagogical knowledge (TPK)", "Technological knowledge (TK) only"]}, {"n": 41, "part": "B", "orig": "Without using any technology, a math teacher uses manipulatives and a graphic organizer to simplify a difficult concept for her learners. Which TPACK area does this show?", "ctx": "A math teacher does not use any technology. She uses manipulatives and a graphic organizer to make a hard idea easier.", "ask": "Which TPACK area does this show?", "words": [["manipulatives", "objects learners can hold and move, like blocks or counters"], ["graphic organizer", "a chart or diagram that organizes ideas"]], "pic": null, "opts": ["Technological knowledge (TK) only", "Pedagogical content knowledge (PCK)", "Technological content knowledge (TCK)", "Technological pedagogical knowledge (TPK)"]}, {"n": 42, "part": "B", "orig": "A teacher knows how to set up a projector, fix connection problems, and record a screencast. Which knowledge area does this mainly show?", "ctx": "A teacher can set up a projector, fix connection problems, and record a screencast.", "ask": "Which knowledge area does this mainly show?", "words": [["screencast", "a video recording of a computer screen"]], "pic": null, "opts": ["Content knowledge (CK)", "Technological knowledge (TK)", "Pedagogical knowledge (PK)", "Pedagogical content knowledge (PCK)"]}, {"n": 43, "part": "B", "orig": "A history teacher has a deep and accurate understanding of the events, people, and causes of the Philippine Revolution. Which knowledge area does this show?", "ctx": "A history teacher knows the events, people, and causes of the Philippine Revolution very well.", "ask": "Which knowledge area does this show?", "words": [], "pic": null, "opts": ["Technological knowledge (TK)", "Pedagogical knowledge (PK)", "Content knowledge (CK)", "Technological content knowledge (TCK)"]}, {"n": 44, "part": "B", "orig": "A teacher uses differentiated activities and formative assessment to address the different learning styles in her class. Which knowledge area does this mainly show?", "ctx": "A teacher gives different activities to different learners. She also checks their learning during the lesson. This helps the different learning styles in her class.", "ask": "Which knowledge area does this mainly show?", "words": [["differentiated activities", "different activities for learners with different needs"], ["formative assessment", "checking learning during the lesson"]], "pic": null, "opts": ["Technological knowledge (TK)", "Technological content knowledge (TCK)", "Pedagogical knowledge (PK)", "Content knowledge (CK)"]}, {"n": 45, "part": "B", "orig": "To teach ecosystems, a teacher has groups build a concept map in an online app, guided by inquiry questions, and assesses it with a rubric. Which part of the framework does this lesson BEST show?", "ctx": "A teacher teaches about ecosystems. Groups make a concept map in an online app. Inquiry questions guide them. The teacher scores their work with a rubric.", "ask": "Which part of the framework does this lesson BEST show?", "words": [["concept map", "a diagram that shows how ideas connect"], ["inquiry questions", "questions that make learners investigate"], ["rubric", "a scoring guide"]], "pic": null, "opts": ["TPACK, because content, pedagogy, and technology work together", "TCK only, because the app is used for a science topic in class", "TK only, because the learners use an online concept-map app", "PCK only, because inquiry questions are a teaching strategy"]}, {"n": 46, "part": "B", "orig": "A pre-service teacher draws her TPACK with a large technology circle and a very small content circle. What does this drawing suggest?", "ctx": "A future teacher draws her TPACK. Look at her drawing. The technology circle is big. The content circle is very small.", "ask": "What does her drawing show?", "words": [["skewed", "leaning too much to one side"], ["pre-service teacher", "a student who is studying to become a teacher"]], "pic": "tpackSkew", "opts": ["Her TPACK is balanced, since technology is the most important area", "Her TPACK is skewed toward content, so she should study more pedagogy", "Her TPACK is complete, because all three circles still overlap a little", "Her TPACK is skewed toward technology, so she should strengthen content"]}, {"n": 47, "part": "B", "orig": "Which teacher shows strong technological knowledge but weak pedagogical content knowledge?", "ctx": "", "ask": "Which teacher is strong in technological knowledge but weak in pedagogical content knowledge?", "words": [["grasp", "understand"]], "pic": null, "opts": ["One who explains concepts clearly but rarely uses any technology in class", "One who knows the subject deeply and uses a few tools to support learning", "One who plans lessons from the content first and then adds suitable tools", "One who masters many apps but cannot explain concepts in ways learners grasp"]}, {"n": 48, "part": "B", "orig": "A teacher plans an online simulation activity, but the school has no reliable internet connection. Which part of the TPACK model is the teacher overlooking?", "ctx": "A teacher plans an online simulation activity. But the school's internet connection is not reliable.", "ask": "Which part of the TPACK model is the teacher forgetting?", "words": [["simulation", "a computer activity that copies a real situation"], ["reliable", "works well every time"]], "pic": null, "opts": ["Technological content knowledge", "Content knowledge", "Contexts", "Pedagogical knowledge"]}, {"n": 49, "part": "B", "orig": "A teacher discovers an exciting new app and designs her whole lesson around it. Based on the TPACK framework, how should this practice be judged?", "ctx": "A teacher finds an exciting new app. She plans her whole lesson around the app.", "ask": "Based on TPACK, how should we judge this practice?", "words": [], "pic": null, "opts": ["It is ideal, since new tools always make the lesson more engaging", "It is ideal, since technology should be the starting point of planning", "It is not ideal, since TPACK is about the right blend, not the tool", "It is not ideal, since technology should never be used in a lesson"]}, {"n": 50, "part": "B", "orig": "Which lesson BEST reflects the TPACK framework in action?", "ctx": "", "ask": "Which lesson BEST shows the TPACK framework in action?", "words": [], "pic": null, "opts": ["One where learners explore apps freely without any learning objective", "One where content goals drive the strategy and the tool supports both", "One where the newest tool is used regardless of the lesson's content", "One where the teacher reads slides word for word for the whole period"]}];
+const N = ITEMS.length;
+const KEY_LS = "ttl1-dale-tpack-exam-v1";
+
+/* ---------- local state (draft only; the submission goes to the teacher's store) ---------- */
+let S = {};
+try { S = JSON.parse(localStorage.getItem(KEY_LS)) || {}; } catch(e) { S = {}; }
+S.answers = Array.isArray(S.answers) && S.answers.length===N ? S.answers : Array(N).fill(null);
+S.flags = Array.isArray(S.flags) && S.flags.length===N ? S.flags : Array(N).fill(false);
+S.showOrig = S.showOrig || {};
+S.prefs = S.prefs || {};
+S.cur = S.cur || 0;
+function save(){ try { localStorage.setItem(KEY_LS, JSON.stringify(S)); } catch(e){} }
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $ = id => document.getElementById(id);
+const answeredCount = () => S.answers.filter(a => a!==null).length;
+
+/* ---------- reading options ---------- */
+const root = document.documentElement;
+function applyPrefs(){
+  const p=S.prefs;
+  root.style.setProperty("--scale", p.scale||1);
+  root.style.setProperty("--lh", p.lh||1.65);
+  if(p.contrast==="high") root.setAttribute("data-contrast","high"); else root.removeAttribute("data-contrast");
+  document.querySelectorAll("[data-scale]").forEach(b=>b.setAttribute("aria-pressed",String((p.scale||1)==+b.dataset.scale)));
+  document.querySelectorAll("[data-lh]").forEach(b=>b.setAttribute("aria-pressed",String((p.lh||1.65)==+b.dataset.lh)));
+  document.querySelectorAll("[data-contrast]").forEach(b=>b.setAttribute("aria-pressed",String((p.contrast||"normal")===b.dataset.contrast)));
+  document.querySelectorAll("[data-orig]").forEach(b=>b.setAttribute("aria-pressed",String((p.orig||"off")===b.dataset.orig)));
+  document.querySelectorAll("[data-time]").forEach(b=>b.setAttribute("aria-pressed",String((p.time||"off")===b.dataset.time)));
+  tickTime();
+}
+$("setBtn").onclick = e => { const s=$("settings"); s.hidden=!s.hidden; e.currentTarget.setAttribute("aria-expanded",String(!s.hidden)); };
+document.querySelectorAll("[data-scale]").forEach(b=>b.onclick=()=>{S.prefs.scale=+b.dataset.scale;save();applyPrefs();});
+document.querySelectorAll("[data-lh]").forEach(b=>b.onclick=()=>{S.prefs.lh=+b.dataset.lh;save();applyPrefs();});
+document.querySelectorAll("[data-contrast]").forEach(b=>b.onclick=()=>{S.prefs.contrast=b.dataset.contrast;save();applyPrefs();});
+document.querySelectorAll("[data-orig]").forEach(b=>b.onclick=()=>{S.prefs.orig=b.dataset.orig;save();applyPrefs();if(view==="q")renderQ();});
+document.querySelectorAll("[data-time]").forEach(b=>b.onclick=()=>{S.prefs.time=b.dataset.time;save();applyPrefs();});
+
+/* time used (shown only if the learner turns it on; no countdown, no limit) */
+function secondsUsed(){ return S.startedAt ? Math.round((Date.now()-S.startedAt)/1000) : 0; }
+function fmtDur(s){ const h=Math.floor(s/3600), m=Math.floor(s%3600/60); return h? `${h} hr ${m} min` : `${m} min`; }
+function tickTime(){
+  const c=$("timeChip"); const on=(S.prefs.time==="on") && S.startedAt && !S.submitted && view!=="teacher";
+  c.hidden=!on; if(on) c.textContent="Time used: "+fmtDur(secondsUsed());
+}
+setInterval(tickTime, 30000);
+
+/* ---------- pictures (no labels that reveal answers) ---------- */
+const PICS = {
+coneBase: () => { let s=`<svg viewBox="0 0 320 250" role="img" aria-label="A cone made of eleven bands. The bottom band is colored.">`;
+  const n=11, top=20, bot=230, cx=160;
+  for(let i=0;i<n;i++){ const y1=top+(bot-top)*i/n, y2=top+(bot-top)*(i+1)/n; const w1=20+260*i/n, w2=20+260*(i+1)/n;
+    const isBase=i===n-1;
+    s+=`<polygon points="${cx-w1/2},${y1} ${cx+w1/2},${y1} ${cx+w2/2},${y2} ${cx-w2/2},${y2}" fill="${isBase?"var(--pick)":"var(--surface)"}" stroke="var(--ink)" stroke-width="1.5"/>`; }
+  s+=`<text x="160" y="247" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">Bottom band (the base)</text></svg>`; return s; },
+tpackCtx: () => `<svg viewBox="0 0 320 300" role="img" aria-label="Three overlapping circles. A dashed circle labeled Contexts goes around all of them.">
+  <circle cx="160" cy="145" r="132" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="9 7"/>
+  <circle cx="160" cy="108" r="58" fill="var(--primary)" fill-opacity=".18" stroke="var(--ink)" stroke-width="1.5"/>
+  <circle cx="126" cy="166" r="58" fill="var(--pick)" fill-opacity=".18" stroke="var(--ink)" stroke-width="1.5"/>
+  <circle cx="194" cy="166" r="58" fill="var(--flag)" fill-opacity=".2" stroke="var(--ink)" stroke-width="1.5"/>
+  <rect x="112" y="268" width="96" height="26" rx="13" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.5"/>
+  <text x="160" y="286" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">Contexts</text></svg>`,
+tpackSkew: () => `<svg viewBox="0 0 320 260" role="img" aria-label="Her drawing: a big Technology circle, a medium Pedagogy circle, and a very small Content circle.">
+  <circle cx="125" cy="110" r="92" fill="var(--primary)" fill-opacity=".2" stroke="var(--ink)" stroke-width="1.5"/>
+  <circle cx="235" cy="110" r="55" fill="var(--pick)" fill-opacity=".2" stroke="var(--ink)" stroke-width="1.5"/>
+  <circle cx="195" cy="200" r="24" fill="var(--flag)" fill-opacity=".25" stroke="var(--ink)" stroke-width="1.5"/>
+  <text x="110" y="105" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">Technology</text>
+  <text x="258" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">Pedagogy</text>
+  <text x="195" y="248" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">Content</text></svg>`
+};
+
+/* ---------- views ---------- */
+let view="start", isOwner=false, db=null, user=null, uid=null, existingSub=null;
+const main=$("main");
+function show(v){ view=v; $("bottom").hidden = v!=="q"; $("prog").hidden = !(v==="q"||v==="review"); tickTime(); }
+function prog(){ const a=answeredCount(); $("progTxt").textContent=`${a} of ${N} answered`; $("progBar").style.width=(a/N*100)+"%"; }
+
+function renderStart(){
+  show("start");
+  const resumed = S.startedAt && !S.submitted;
+  main.innerHTML = `
+  <h1>Before you start</h1>
+  <p class="lede muted">This exam has 50 questions. Each question has four choices. Choose the one best answer.</p>
+  <div class="card">
+    <h2 style="margin-top:0">How the exam works</h2>
+    <ol class="steps">
+      <li><span><b>One question at a time.</b>Read the question, then tap one answer. Your answer turns green with a check mark.</span></li>
+      <li><span><b>Simple wording.</b>Each question is written in simple words. Tap “See original wording” to compare with the paper exam. The answer is the same.</span></li>
+      <li><span><b>Word help.</b>Hard words are explained in a blue box under the question.</span></li>
+      <li><span><b>Not sure? Mark it.</b>Tap “Mark to check later”. You can come back to it before you submit.</span></li>
+      <li><span><b>Take your time.</b>There is no countdown. Your answers save on this device as you go.</span></li>
+      <li><span><b>Check, then submit.</b>At the end, you will see which questions are not answered yet. Then tap “Submit my exam”.</span></li>
+    </ol>
+    <div class="legend" aria-hidden="true"><span><i class="sw ans"></i> Answered</span><span><i class="sw flg"></i> Marked to check later</span><span><i class="sw"></i> Not answered</span></div>
+  </div>
+  <div class="note"><b>Need help?</b> Raise your hand. Your teacher will come to you. You can also change the text size and contrast in <b>Reading options</b> at the top.</div>
+  <div class="card">
+    <label class="f" for="nameIn">Your full name</label>
+    <input type="text" id="nameIn" autocomplete="name" value="${esc(S.name||"")}" placeholder="Last name, First name">
+    <p class="err" id="nameErr" aria-live="polite"></p>
+    <div class="row"><button class="btn primary" type="button" id="startBtn">${resumed?"Continue my exam":"Start the exam"}</button>${resumed?`<span class="muted">You answered ${answeredCount()} of ${N}.</span>`:""}</div>
+  </div>`;
+  $("startBtn").onclick = () => {
+    const v=$("nameIn").value.trim();
+    if(v.length<3){ $("nameErr").textContent="Please type your full name first."; $("nameIn").focus(); return; }
+    S.name=v; if(!S.startedAt) S.startedAt=Date.now(); save(); renderQ();
+  };
+  $("nameIn").onkeydown = e => { if(e.key==="Enter") $("startBtn").click(); };
+}
+
+function renderQ(){
+  show("q"); prog();
+  const i=S.cur, it=ITEMS[i], a=S.answers[i];
+  const origOpen = S.prefs.orig==="on" || S.showOrig[i];
+  const partName = it.part==="A" ? "Part A · Dale's Cone of Experience" : "Part B · TPACK";
+  main.innerHTML = `
+  <div class="qhead"><span class="part">${partName}</span><span class="qnum">Question ${it.n} of ${N}</span></div>
+  <div class="card" style="margin-top:.3rem">
+    ${it.ctx?`<p class="ctx">${esc(it.ctx)}</p>`:""}
+    <p class="ask" id="ask">${esc(it.ask)}</p>
+    ${it.pic?`<figure class="pic">${PICS[it.pic]()}</figure>`:""}
+    ${it.words.length?`<div class="words"><h3>Word help</h3><dl>${it.words.map(w=>`<div><dt>${esc(w[0])}</dt> <dd>means ${esc(w[1])}.</dd></div>`).join("")}</dl></div>`:""}
+    ${S.prefs.orig==="on"?"":`<button class="linkbtn" type="button" id="origBtn" aria-expanded="${!!origOpen}">${origOpen?"Hide original wording":"See original wording"}</button>`}
+    ${origOpen?`<div class="origbox"><b>ORIGINAL WORDING (PAPER EXAM)</b>${esc(it.orig)}</div>`:""}
+    <div class="opts" role="radiogroup" aria-labelledby="ask">
+      ${it.opts.map((o,j)=>`<button class="opt" type="button" role="radio" aria-checked="${a===j}" data-j="${j}"><span class="L">${"ABCD"[j]}</span><span>${esc(o)}</span><span class="tick">${a===j?"✓ Your answer":""}</span></button>`).join("")}
+    </div>
+    <p class="status ${a===null?"none":"done"}" aria-live="polite">${a===null?"Not answered yet.":`✓ You chose ${"ABCD"[a]}. You can change it.`}</p>
+  </div>
+  <p class="maphead">Go to any question</p>
+  ${mapHTML()}`;
+  main.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.j));
+  const ob=$("origBtn"); if(ob) ob.onclick=()=>{ S.showOrig[i]=!S.showOrig[i]; save(); renderQ(); $("origBtn")?.focus(); };
+  bindMap();
+  $("prevBtn").disabled = i===0;
+  $("nextBtn").textContent = i===N-1 ? "Check my answers →" : "Next →";
+  $("flagBtn").setAttribute("aria-pressed",String(S.flags[i]));
+  $("flagBtn").textContent = S.flags[i] ? "! Marked (tap to unmark)" : "Mark to check later";
+}
+function pick(j){
+  const i=S.cur; S.answers[i]=j; save();
+  main.querySelectorAll(".opt").forEach((b,k)=>{ b.setAttribute("aria-checked",String(k===j)); b.querySelector(".tick").textContent = k===j?"✓ Your answer":""; });
+  const st=main.querySelector(".status"); st.className="status done"; st.textContent=`✓ You chose ${"ABCD"[j]}. You can change it.`;
+  prog(); refreshMap();
+}
+function mapHTML(){
+  const cell=k=>`<button type="button" data-k="${k}" class="${S.answers[k]!==null?"ans":""} ${S.flags[k]?"flg":""} ${k===S.cur&&view==="q"?"cur":""}" aria-label="Question ${k+1}${S.answers[k]!==null?", answered":", not answered"}${S.flags[k]?", marked":""}">${k+1}</button>`;
+  return `<div class="maphead muted" style="margin-top:.2rem;font-weight:400">Part A · Dale's Cone</div><div class="map">${[...Array(25).keys()].map(cell).join("")}</div>
+  <div class="maphead muted" style="font-weight:400">Part B · TPACK</div><div class="map">${[...Array(25).keys()].map(k=>cell(k+25)).join("")}</div>`;
+}
+function refreshMap(){ main.querySelectorAll(".map button").forEach(b=>{const k=+b.dataset.k;b.classList.toggle("ans",S.answers[k]!==null);b.classList.toggle("flg",S.flags[k]);b.setAttribute("aria-label",`Question ${k+1}${S.answers[k]!==null?", answered":", not answered"}${S.flags[k]?", marked":""}`);}); }
+function bindMap(){ main.querySelectorAll(".map button").forEach(b=>b.onclick=()=>{ S.cur=+b.dataset.k; save(); renderQ(); window.scrollTo(0,0); }); }
+
+$("prevBtn").onclick=()=>{ if(S.cur>0){S.cur--;save();renderQ();window.scrollTo(0,0);} };
+$("nextBtn").onclick=()=>{ if(S.cur<N-1){S.cur++;save();renderQ();window.scrollTo(0,0);} else renderReview(); };
+$("flagBtn").onclick=()=>{ const i=S.cur; S.flags[i]=!S.flags[i]; save(); $("flagBtn").setAttribute("aria-pressed",String(S.flags[i])); $("flagBtn").textContent=S.flags[i]?"! Marked (tap to unmark)":"Mark to check later"; refreshMap(); };
+document.addEventListener("keydown",e=>{
+  if(view!=="q"||e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA"||e.metaKey||e.ctrlKey||e.altKey) return;
+  const k=e.key.toUpperCase(); const idx="ABCD".indexOf(k);
+  if(idx>=0&&k.length===1){ e.preventDefault(); pick(idx); }
+  else if(e.key==="ArrowRight"){ $("nextBtn").click(); } else if(e.key==="ArrowLeft"){ $("prevBtn").click(); }
+});
+
+function renderReview(){
+  show("review"); prog();
+  const blank=[], marked=[];
+  S.answers.forEach((a,k)=>{ if(a===null) blank.push(k+1); if(S.flags[k]) marked.push(k+1); });
+  main.innerHTML = `
+  <h1>Check your answers</h1>
+  <div class="stats">
+    <div><small>Answered</small><span class="big">${N-blank.length}</span> <span class="muted">of ${N}</span></div>
+    <div><small>Not answered</small><span class="big" style="color:${blank.length?"var(--warn)":"var(--pick)"}">${blank.length}</span></div>
+    <div><small>Marked to check</small><span class="big" style="color:var(--flag)">${marked.length}</span></div>
+  </div>
+  ${blank.length?`<div class="note" style="border-color:var(--warn);background:var(--warn-soft)"><b>Not answered yet:</b> question ${blank.join(", ")}. Tap a number below to answer it.</div>`:`<div class="note" style="border-color:var(--pick);background:var(--pick-soft)"><b>✓ All 50 questions are answered.</b></div>`}
+  ${marked.length?`<p>You marked question ${marked.join(", ")} to check later.</p>`:""}
+  ${mapHTML()}
+  <div class="card">
+    <h2 style="margin-top:0">Ready to submit?</h2>
+    <p>After you submit, you cannot change your answers.</p>
+    <div class="row" id="subRow"><button class="btn" type="button" id="backQ">Go back to the questions</button><button class="btn primary" type="button" id="subAsk">Submit my exam</button></div>
+    <div id="subConfirm" hidden>
+      <p style="font-weight:700">${blank.length?`You still have ${blank.length} unanswered question${blank.length>1?"s":""}. Submit anyway?`:"Are you sure? You cannot change your answers after this."}</p>
+      <div class="row"><button class="btn" type="button" id="subNo">No, go back</button><button class="btn primary" type="button" id="subYes">Yes, submit now</button></div>
+    </div>
+    <p class="err" id="subErr" aria-live="polite"></p>
+  </div>`;
+  bindMap();
+  $("backQ").onclick=()=>{ renderQ(); window.scrollTo(0,0); };
+  $("subAsk").onclick=()=>{ $("subRow").hidden=true; $("subConfirm").hidden=false; $("subYes").focus(); };
+  $("subNo").onclick=()=>{ $("subRow").hidden=false; $("subConfirm").hidden=true; };
+  $("subYes").onclick=submit;
+  window.scrollTo(0,0);
+}
+
+function answerString(){ return S.answers.map(a=>a===null?"-":"ABCD"[a]).join(""); }
+function makeCode(){ return `M5|${S.name}|${answerString()}|${new Date(S.submittedAt).toISOString().slice(0,16)}|${secondsUsed()}`; }
+
+async function submit(){
+  const btn=$("subYes"); btn.disabled=true; btn.textContent="Submitting…";
+  S.submittedAt=Date.now(); S.secs=secondsUsed();
+  let saved=false;
+  if(db && uid){
+    try{
+      await db.collection("submissions").doc(uid).set({ name:S.name, answers:answerString(), flags:S.flags.map((f,k)=>f?k+1:0).filter(Boolean), startedAt:S.startedAt, submittedAt:S.submittedAt, seconds:S.secs, version:1 });
+      saved=true;
+    }catch(e){ saved=false; }
+  }
+  S.submitted=true; S.savedOnline=saved; save();
+  renderDone();
+}
+
+function renderDone(){
+  show("done");
+  const code=makeCode();
+  main.innerHTML = `
+  <div class="card" style="text-align:left">
+    <p class="big" style="color:var(--pick)" aria-hidden="true">✓</p>
+    <h1>Your exam is submitted</h1>
+    <p>Thank you, ${esc(S.name||"")}. You answered ${answeredCount()} of ${N} questions.</p>
+    ${S.savedOnline?`<p>Your answers were sent to your teacher. Your teacher will tell you your score.</p>`:
+    `<div class="note"><b>Your answers could not be sent online.</b> They are saved on this device. Show this code to your teacher, or copy it and send it to your teacher.</div>
+     <div class="codebox" id="code">${esc(code)}</div>
+     <div class="row" style="margin-top:.6rem"><button class="btn primary" type="button" id="copyCode">Copy the code</button><span id="copyMsg" class="muted" aria-live="polite"></span></div>`}
+  </div>`;
+  const cc=$("copyCode");
+  if(cc) cc.onclick=async()=>{ try{ await navigator.clipboard.writeText(code); $("copyMsg").textContent="✓ Copied."; }catch(e){ const r=document.createRange(); r.selectNodeContents($("code")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); $("copyMsg").textContent="Copy is blocked here. The code is selected, so copy it yourself."; } };
+}
+
+function renderAlready(){
+  show("done");
+  main.innerHTML = `<div class="card"><p class="big" style="color:var(--pick)" aria-hidden="true">✓</p><h1>You already submitted this exam</h1>
+  <p>Your answers were sent to your teacher${existingSub&&existingSub.submittedAt?` on ${new Date(existingSub.submittedAt).toLocaleString()}`:""}. Your teacher will tell you your score.</p></div>`;
+}
+
+/* ---------- teacher view (owner only) ---------- */
+let teacherKey=null, subsUnsub=null, subs=[];
+function grade(ans,key){
+  let a=0,b=0; const per=[];
+  for(let k=0;k<N;k++){ const ok=ans[k]===key[k]; per.push(ok); if(ok){ if(k<25)a++; else b++; } }
+  return {a,b,total:a+b,per};
+}
+function renderTeacher(){
+  show("teacher"); $("timeChip").hidden=true;
+  main.innerHTML = `
+  <div class="row" style="justify-content:space-between"><h1 style="margin:0">Teacher view</h1><button class="btn" type="button" id="leaveT">Back to the exam</button></div>
+  <p class="muted">Only you can see this page. Your learner sees only the exam.</p>
+  <div class="card" id="keyCard"></div>
+  <h2>Submissions</h2>
+  <div id="subList"><p class="muted">Loading submissions…</p></div>
+  <h2>Grade an answer code</h2>
+  <div class="card"><p class="muted" style="margin-top:0">If the learner's answers could not be sent online, she will have a code that starts with <b>M5|</b>. Paste it here.</p>
+  <label class="f" for="codeIn">Answer code</label><input type="text" id="codeIn" placeholder="M5|Name|BDCA…">
+  <div class="row" style="margin-top:.6rem"><button class="btn primary" type="button" id="codeGo">Grade this code</button></div><p class="err" id="codeErr" aria-live="polite"></p><div id="codeOut"></div></div>`;
+  $("leaveT").onclick=()=>boot(true);
+  renderKeyCard(); renderSubs();
+  $("codeGo").onclick=()=>{
+    const v=$("codeIn").value.trim().split("|");
+    if(v.length<3||v[0]!=="M5"||v[2].length!==N){ $("codeErr").textContent="This code is not complete. Check that you copied the whole code."; return; }
+    if(!teacherKey){ $("codeErr").textContent="Save the answer key first."; return; }
+    $("codeErr").textContent=""; $("codeOut").innerHTML=subHTML({name:v[1],answers:v[2],submittedAt:Date.parse(v[3])||null,seconds:+v[4]||null,flags:[]},null);
+  };
+}
+function renderKeyCard(){
+  const c=$("keyCard"); if(!c) return;
+  if(teacherKey){
+    c.innerHTML=`<p style="margin:0"><b>✓ Answer key saved.</b> It is stored privately for you. Your learner cannot see it.</p><button class="linkbtn" type="button" id="keyChange">Change the answer key</button>`;
+    $("keyChange").onclick=()=>{ teacherKey=null; renderKeyCard(); };
+    return;
+  }
+  c.innerHTML=`<h2 style="margin-top:0">Add the answer key</h2>
+  <p>Paste the 50 answer letters in order, from item 1 to item 50. Use the letters from your answer key file. You do this once.</p>
+  <label class="f" for="keyIn">Answer key (50 letters)</label><input type="text" id="keyIn" placeholder="BDCAB…" autocomplete="off" spellcheck="false">
+  <div class="row" style="margin-top:.6rem"><button class="btn primary" type="button" id="keySave">Save the answer key</button></div><p class="err" id="keyErr" aria-live="polite"></p>`;
+  $("keySave").onclick=async()=>{
+    const v=$("keyIn").value.toUpperCase().replace(/[^ABCD]/g,"");
+    if(v.length!==N){ $("keyErr").textContent=`The key needs exactly ${N} letters (A, B, C or D). You entered ${v.length}.`; return; }
+    try{ await db.doc(`data/users/${uid}/examkey`).set({key:v}); teacherKey=v; renderKeyCard(); renderSubs(); }
+    catch(e){ $("keyErr").textContent="The key could not be saved. Check your connection and try again."; }
+  };
+}
+function fmtDate(t){ return t? new Date(t).toLocaleString(undefined,{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}) : "—"; }
+function subHTML(s,id){
+  const g = teacherKey ? grade(s.answers,teacherKey) : null;
+  const rows=[0,1].map(h=>`<tr><th>Item</th>${[...Array(25).keys()].map(k=>`<th>${h*25+k+1}</th>`).join("")}</tr>
+    <tr><td>Answer</td>${[...Array(25).keys()].map(k=>{const i=h*25+k,x=s.answers[i];return `<td class="${g?(g.per[i]?"r":"w"):""}">${x==="-"?"—":x}</td>`;}).join("")}</tr>
+    ${g?`<tr><td>Key</td>${[...Array(25).keys()].map(k=>`<td>${teacherKey[h*25+k]}</td>`).join("")}</tr>`:""}`).join("");
+  return `<div class="sub">
+    <div class="row" style="justify-content:space-between"><h3 style="margin:0;font-family:var(--display)">${esc(s.name||"(no name)")}</h3>${id?`<span class="row"><button class="btn danger" type="button" data-del="${esc(id)}">Delete (allow a retake)</button></span>`:""}</div>
+    <p class="muted" style="margin:.3rem 0 .6rem">Submitted ${fmtDate(s.submittedAt)}${s.seconds?` · Time used: ${fmtDur(s.seconds)}`:""}${s.flags&&s.flags.length?` · Marked to check: ${s.flags.join(", ")}`:""}</p>
+    ${g?`<div class="stats"><div><small>Total score</small><span class="big">${g.total}</span> <span class="muted">/ ${N} (${Math.round(g.total/N*100)}%)</span></div><div><small>Part A · Dale's Cone</small><span class="big">${g.a}</span> <span class="muted">/ 25</span></div><div><small>Part B · TPACK</small><span class="big">${g.b}</span> <span class="muted">/ 25</span></div></div>`:`<p class="note">Add the answer key above to see the score.</p>`}
+    <div class="table-wrap" style="margin-top:.8rem"><table>${rows}</table></div>
+    <div data-confirm="${esc(id||"")}" hidden><p style="font-weight:700;margin:.6rem 0 .3rem">Delete this submission? The learner can then take the exam again.</p><div class="row"><button class="btn" type="button" data-no>Cancel</button><button class="btn danger" type="button" data-yes>Yes, delete</button></div></div>
+  </div>`;
+}
+function renderSubs(){
+  const box=$("subList"); if(!box) return;
+  if(!subs.length){ box.innerHTML=`<p class="muted">No submissions yet. When your learner submits, her answers appear here.</p>`; return; }
+  box.innerHTML=subs.map(d=>subHTML(d.data,d.id)).join("");
+  box.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{ const c=b.closest(".sub").querySelector("[data-confirm]"); c.hidden=false; });
+  box.querySelectorAll("[data-confirm]").forEach(c=>{
+    c.querySelector("[data-no]").onclick=()=>{c.hidden=true;};
+    c.querySelector("[data-yes]").onclick=async()=>{ try{ await db.collection("submissions").doc(c.dataset.confirm).delete(); }catch(e){} };
+  });
+}
+async function startTeacherData(){
+  try{ const k=await db.doc(`data/users/${uid}/examkey`).get(); if(k.exists) teacherKey=k.data().key; }catch(e){}
+  if(!subsUnsub){
+    const t=setTimeout(()=>{ const b=$("subList"); if(b&&!subs.length) b.innerHTML=`<p class="muted">Submissions can't be reached yet. Check your connection.</p>`; },10000);
+    subsUnsub=db.collection("submissions").onSnapshot(snap=>{
+      if(!snap.metadata.fromCache) clearTimeout(t);
+      subs=snap.docs.filter(d=>d.exists).map(d=>({id:d.id,data:d.data()})).sort((a,b)=>(b.data.submittedAt||0)-(a.data.submittedAt||0));
+      if(view==="teacher") renderSubs();
+    },()=>{ clearTimeout(t); const b=$("subList"); if(b) b.innerHTML=`<p class="muted">Submissions can't be loaded right now.</p>`; });
+  }
+}
+$("teacherBtn").onclick=()=>{ renderTeacher(); renderKeyCard(); };
+
+/* ---------- boot ---------- */
+function boot(fromTeacher){
+  if(S.submitted) return renderDone();
+  if(existingSub) return renderAlready();
+  if(S.startedAt && !fromTeacher) return renderQ();
+  if(S.startedAt && fromTeacher) return renderQ();
+  renderStart();
+}
+applyPrefs();
+boot();
+(async()=>{
+  try{
+    if(!window.claude || !window.claude.use) return;
+    [user, db] = await Promise.all([claude.use("user"), claude.use("db")]);
+    if(user){ isOwner = await user.isOwner(); uid = await user.id(); }
+    if(isOwner && db && uid){ $("teacherBtn").hidden=false; startTeacherData(); }
+    if(db && uid && !isOwner && !S.submitted){
+      try{ const d=await db.collection("submissions").doc(uid).get(); if(d.exists){ existingSub=d.data(); if(view!=="teacher") renderAlready(); } }catch(e){}
+    }
+  }catch(e){}
+})();
+</script>
+
+</body></html>
